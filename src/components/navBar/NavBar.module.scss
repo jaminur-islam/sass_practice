@@ -1,0 +1,84 @@
+
+//===================== import another file ====================//
+@import "pp.scss";
+
+//=============== Variable ==============================//
+$myColor : red ;
+$bgColor : yellow;
+$paraSize : 14px;
+
+.ul_style {
+  color: $myColor;
+  background: $bgColor;
+  li {
+    color : green;
+    display: inline-block;
+    padding:  20px;
+    margin: 10px;
+    border-radius: 10px;
+    a{
+      color: black;
+    }
+  }
+  li:hover{
+   background-color: red;
+   transition: 2s;
+   
+  }
+
+}
+
+.heading_2{
+  font-size: $paraSize;
+}
+
+//===================== @mixin ==================================//
+@mixin para_style($color , $size) { 
+  background-color: $color;
+  padding: $size;
+  margin-top: 20px;
+  box-shadow: 10px;
+  
+}
+
+.p_class {
+  @include para_style(red , 20px)
+}
+
+// ============================== extend ==========================//
+.btn {
+  border: none;
+  padding: 10px;
+  color: rgb(246, 246, 246);
+  background-color: green;
+  border-radius: 10px;
+  font-size: 20px;
+  margin: 10px;
+}
+
+.my_btn_1 {
+  @extend .btn;
+  background-color: pink;
+  font-size: 30px;
+}
+
+.my_btn_2 {
+  @extend .my_btn_1;
+}
+
+//===================== if else ===========================//
+@mixin setFontSize($value) {
+  @if $value == small {
+    font-size: 12px;
+  } @else if $value == medium{
+    font-size: 20px;
+  } @else if $value == large {
+    font-size: 30px;
+  }@else{
+    font-size: none;
+  }
+}
+
+.btn_3 {
+  @include setFontSize(medium)
+}
